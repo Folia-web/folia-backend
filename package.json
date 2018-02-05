@@ -1,6 +1,6 @@
 {
   "name": "folia-service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Module to call folia",
   "main": "analysis.js",
   "directories": {
@@ -8,15 +8,12 @@
   },
   "dependencies": {
     "express": "^4.16.2",
-    "gridfs-stream": "^1.1.1",
     "express-fileupload": "^0.4.0",
-    "mongoose": "^5.0.1",
-    "expressjs": "^1.0.1"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "gickhub",
   "license": "ISC"
 }
