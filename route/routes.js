@@ -1,6 +1,5 @@
 module.exports = function (app) {
-  var folia = require('./analysis')
-  var callBack = (err, stdout, sdtderr) => console.log(stdout)
+  var folia = require('../analysis')
 
     // normal routes ===============================================================
 
@@ -15,9 +14,9 @@ module.exports = function (app) {
       if(!req.files){
         return res.status(400).send('No file uploaded')
       }
-        let leaf = req.files.leaf;
-        let name=req.files.leaf.name
-        leaf.mv('/tmp/' +name,function(err){
+        let id = req.body.id
+        let leaf=req.files.leaf
+        leaf.mv('/tmp/' +id,function(err){
           if(err)
             return res.status(500).send(err)
 
@@ -30,9 +29,9 @@ module.exports = function (app) {
       if(!req.files){
         return res.status(400).send('No file uploaded')
       }
+        let id = req.body.id
         let mask = req.files.mask;
-        let name=req.files.mask.name
-        leaf.mv('/tmp/' +name,function(err){
+        mask.mv('/tmp/' + id,function(err){
           if(err)
             return res.status(500).send(err)
 
@@ -43,10 +42,12 @@ module.exports = function (app) {
 
 
     app.get('/result',function(req,res){
-      if(req.param('leafname') && req.param('maskname')){
-        let leaf=req.param('leafname')
-        let mask = req.param('maskname')
-        folia.analysis(leaf,mask,callBack)
+      res.writeHead(200, { "Content-Type": "text/event-stream",
+                           "Cache-control": "no-cache" });
+      if(req.query.leafId && req.query.maskId){
+        let leaf=req.query.leafId
+        let mask = req.query.maskId
+        folia.analysis('/tmp/' + leaf,'/tmp/' + mask,res)
 
       }
     })

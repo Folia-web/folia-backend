@@ -2,18 +2,18 @@
   "name": "folia-service",
   "version": "1.0.1",
   "description": "Module to call folia",
-  "main": "analysis.js",
-  "directories": {
-    "test": "test"
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gick/folia-backend.git"
   },
   "dependencies": {
+    "exec-sh": "^0.2.1",
     "express": "^4.16.2",
-    "express-fileupload": "^0.4.0",
+    "express-fileupload": "^0.4.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "author": "gickhub",
   "license": "ISC"
 }
