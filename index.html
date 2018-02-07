@@ -3,13 +3,13 @@
 
 <body>
       <ul id="eventlist"> </ul>
-      <form  id='uploadLeaf' action='http://localhost:8181/leafimage' method='post'encType="multipart/form-data">
+      <form  id='uploadLeaf' action='/leafimage' method='post'encType="multipart/form-data">
             <input id="leafId" type="text" placeholder="Leaf image id" name="id" />
             <input type="file"  title="Leaf image" name="leaf" />
             <input type='submit' value='Upload!' />
       </form>
 
-      <form ref='uploadMask' id='uploadMask' action='http://localhost:8181/maskimage' method='post'  encType="multipart/form-data">
+      <form ref='uploadMask' id='uploadMask' action='/maskimage' method='post'  encType="multipart/form-data">
             <input id="maskId" type="text" placeholder="Mask image id" name="id" />
             <input type="file" title="Mask image" name="mask" />
             <input type='submit' value='Upload!' />
@@ -25,7 +25,7 @@
                   var leafId = document.getElementById('leafId').value;
                   var maskId = document.getElementById('maskId').value;
 
-                  var evtSource = new EventSource("http://localhost:8181/result?leafId="+ leafId+"&maskId=" + maskId);
+                  var evtSource = new EventSource("/result?leafId="+ leafId+"&maskId=" + maskId);
                   var newElement = document.createElement("li");
                   newElement.innerHTML = "Messages:";
                   eventList.appendChild(newElement);

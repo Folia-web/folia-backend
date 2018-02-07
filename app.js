@@ -6,7 +6,7 @@ var express = require('express');
 const fileUpload = require('express-fileupload');
 
 var app = express();
-var port = 8181;
+var port = 80;
 app.use(fileUpload());
 app.use(express.static(__dirname))
 //Grid.mongo = mongoose.mongo;
