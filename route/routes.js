@@ -47,7 +47,7 @@ module.exports = function (app) {
       if(req.query.leafId && req.query.maskId){
         let leaf=req.query.leafId
         let mask = req.query.maskId
-        folia.analysis('/tmp/' + leaf,'/tmp/' + mask,res)
+        folia.analysis( leaf, mask,res)
 
       }
     })
