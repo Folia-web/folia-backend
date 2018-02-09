@@ -1,6 +1,6 @@
 var process = require('child_process');
 function analysis(leaf, color, res) {
-    var spw = process.spawn('sh', ['folia.sh', leaf, color,'/tmp/'+leaf+color +'.png','/dev/null'])
+    var spw = process.spawn('sh', ['folia.sh','/tmp/' +leaf, '/tmp/' +color,'/tmp/'+leaf+color +'.png','/dev/null'])
     //var spw = process.spawn('ping', ['-c', '5', '127.0.0.1']),
 
     str=""
@@ -16,7 +16,7 @@ function analysis(leaf, color, res) {
               str = lines[i];
           } else{
               // Note: The double-newline is *required*
-              res.write('data: ' + lines[i] + "\n\n");
+              res.write(lines[i] + "\n\n");
           }
       }
     });
