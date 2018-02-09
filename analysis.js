@@ -8,7 +8,7 @@ function analysis(leaf, color, res) {
       str += data.toString();
 
       // just so we can see the server is doing something
-
+      console.log(str)
       // Flush out line by line.
       var lines = str.split("\n");
       for(var i in lines) {
@@ -16,7 +16,7 @@ function analysis(leaf, color, res) {
               str = lines[i];
           } else{
               // Note: The double-newline is *required*
-              res.write(lines[i] + "\n\n");
+              res.write('data:'+lines[i] + "\n\n");
           }
       }
     });

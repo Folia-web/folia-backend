@@ -8,7 +8,7 @@ const fileUpload = require('express-fileupload');
 var app = express();
 var port = 80;
 app.use(fileUpload());
-app.use(express.static(__dirname))
+app.use(express.static('/home/folia-web/'))
 //Grid.mongo = mongoose.mongo;
 // configuration ===============================================================
 
