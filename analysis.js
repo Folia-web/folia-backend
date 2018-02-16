@@ -13,7 +13,6 @@ function analysis(leaf, color, res) {
       str += data.toString();
 
       // just so we can see the server is doing something
-      console.log(str)
       // Flush out line by line.
       var lines = str.split("\n");
       for(var i in lines) {
@@ -31,9 +30,9 @@ function analysis(leaf, color, res) {
     });
 
     spw.on('close', (code) => {
-
-      res.write('data:EOF');
-      res.end()
+      console.log(code)
+      console.log('ending data')
+      res.write('data:EOF'+ "\n\n")
     });
 
 }

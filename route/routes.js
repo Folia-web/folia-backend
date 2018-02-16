@@ -42,10 +42,13 @@ module.exports = function (app) {
     });
 
 
-    app.get('/proxy/test',function(req,res){
-      res.send(req.query)
+    app.get('/mask/:id',function(req,res){
+      res.download('/tmp/' + req.params.id + '.png')
     })
 
+    app.get('/result/:id',function(req,res){
+      res.download('/tmp/' + req.params.id + '.csv')
+    })
 
     // handle media posted by authenticated users
     app.post('/leafimage', function (req, res) {
