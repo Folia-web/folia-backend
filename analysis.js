@@ -1,6 +1,11 @@
 var process = require('child_process');
 function analysis(leaf, color, res) {
-    var spw = process.spawn('sh', ['folia.sh','/tmp/' +leaf, '/tmp/' +color,'/tmp/'+leaf+color +'.png','/dev/null'])
+    let base='/tmp/'
+    let leafPath=base+leaf
+    let colorPath = base + color + '.png'
+    let maskPath = base + color + leaf + '.png'
+    let csvPath= base+color+leaf +'.csv'
+    var spw = process.spawn('sh', ['folia.sh',leafPath ,colorPath,maskPath,csvPath])
     //var spw = process.spawn('ping', ['-c', '5', '127.0.0.1']),
 
     str=""
@@ -26,7 +31,9 @@ function analysis(leaf, color, res) {
     });
 
     spw.on('close', (code) => {
-      res.end(str);
+
+      res.write('data:EOF');
+      res.end()
     });
 
 }
