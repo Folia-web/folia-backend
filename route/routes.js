@@ -1,6 +1,6 @@
 module.exports = function (app) {
   var folia = require('../analysis')
-
+  var fs = require('fs')
     // normal routes ===============================================================
 
     //###################################################################
@@ -44,6 +44,15 @@ module.exports = function (app) {
 
     app.get('/mask/:id',function(req,res){
       res.download('/tmp/' + req.params.id + '.png')
+    })
+
+    app.get('/stringResult/:id',function(req,res){
+      fs.readFile('/tmp/'+req.params.id+'.csv','utf8',(err,data)=>{
+        if(err){
+          return res.status(500).send('FIle path problem')
+        }
+        res.send(data)
+      })
     })
 
     app.get('/result/:id',function(req,res){

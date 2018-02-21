@@ -26,7 +26,7 @@ function analysis(leaf, color, res) {
     });
 
     spw.stderr.on('data', (data) => {
-      console.log('stderr: ${data}');
+      console.log(data.toString());
     });
 
     spw.on('close', (code) => {
