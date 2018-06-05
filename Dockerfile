@@ -27,7 +27,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 RUN npm install
-
+ENV LD_LIBRARY_PATH /usr/local/lib
 COPY . .
 EXPOSE 8081
 CMD [ "npm", "start" ]
