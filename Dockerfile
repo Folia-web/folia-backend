@@ -2,6 +2,8 @@ FROM node:8.9.4
 
 MAINTAINER pgicquel <pygicq@kuniv-lemans.fr>
 
+RUN npm install pm2 -g
+
 RUN apt-get update \
         && apt-get upgrade -y \
         && apt-get install -y unzip wget curl build-essential \
@@ -27,7 +29,10 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 RUN npm install
+
 ENV LD_LIBRARY_PATH /usr/local/lib
+ENV NODE_ENV production
+
 COPY . .
-EXPOSE 8081
-CMD [ "npm", "start" ]
+EXPOSE 8081 8082
+CMD [ "pm2-runtime", "ecosystem.config.js","--only","server-setup" ]

@@ -1,0 +1,8 @@
+{
+
+    "mongoURL": "mongodb://conception:reveriesConception@conception.reveries-project.fr/test?autSource=test",
+    "firebaseURL": "https://rev-game-6e36a.firebaseio.com"
+
+
+}
+

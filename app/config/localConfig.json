@@ -1,0 +1,5 @@
+{
+  "url": "mongodb://localhost/test",
+  "mongoURL": "mongodb://localhost/test",
+  "firebaseURL": "https://rev-game-6e36a.firebaseio.com"
+}

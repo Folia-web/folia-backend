@@ -1,4 +1,4 @@
-var process = require("child_process");
+var childProcess = require("child_process");
 var fs = require("fs");
 var LineByLineReader = require("line-by-line");
 var pidusage = require("pidusage");
@@ -53,19 +53,19 @@ function analysis(foliaInstance, fireDB) {
   let colorPath = base + foliaInstance.colorFilename;
   let maskPath = base + foliaInstance.leafFilename + "mask.png";
   let csvPath = base + foliaInstance.leafFilename + ".mask.csv";
-  var spw = process.spawn("/usr/src/app/Debian8_x64/Algo_LIRIS_Debian_x64", [
+  var spw = childProcess.spawn(process.env.FOLIA_PATH, [
     leafPath,
     colorPath,
     maskPath,
     csvPath
-  ],{cwd:'/usr/src/app/folia-backend/Debian8_x64/'});
-  setTimeout(function(){spw.kill(),30000})
+  ],{cwd:process.env.FOLIA_CWD});
+ let timeout= setTimeout(function(){spw.kill()},30000)
   console.log(leafPath + ' ' + colorPath+ ' ' + maskPath + ' '+ csvPath)
   //var spw = process.spawn('ping', ['-c', '5', '127.0.0.1']),
   str = "";
   spw.stdout.on("data", data => {
     str += data.toString();
-
+    console.log(data.toString())
     // just so we can see the server is doing something
     // Flush out line by line.
     var lines = str.split("\n");
@@ -87,6 +87,7 @@ function analysis(foliaInstance, fireDB) {
   });
 
   spw.on("close", (code) => {
+    clearTimeout(timeout)
     console.log(code)
 
     if (code === 0) {
@@ -95,6 +96,7 @@ function analysis(foliaInstance, fireDB) {
     } 
     else
     {
+      
       var newElem = currentErrors.push();
       newElem.set({ error: 'Erreur imprévue' });
     }
